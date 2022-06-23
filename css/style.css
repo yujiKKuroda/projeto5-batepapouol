@@ -1,0 +1,4 @@
+/*Impede de modificar o tamanho final*/
+* {
+	box-sizing: border-box;
+}
