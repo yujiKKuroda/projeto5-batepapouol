@@ -21,6 +21,7 @@
         height: 80px;
         background-color: #ffffff;
         display: flex;
+		z-index: 2;
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
     }
 
@@ -56,7 +57,6 @@
 		border-radius: 2px;
 		display: flex;
 		flex-direction: row;
-		white-space: nowrap;
 	}
 
 	.normal {
@@ -91,6 +91,33 @@
 	.nome {
 		font-weight: bold;
 		display: inline;
+	}
+
+    /*------------------------------------------------------------------------------------------------*/
+    /*Menu para enviar mensagens*/
+    .rodape {
+        position: fixed;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 80px;
+        background-color: white;
+        bottom: 0;
+		z-index: 2;
+		box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+	.rodape form {
+		position: absolute;
+		height: 30px;
+		left: 17px;
+	}
+
+	.rodape ion-icon {
+		position: absolute;
+		width: 26px;
+		height: 26px;
+		right: 18px;
 	}
 
 }
