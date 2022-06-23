@@ -11,6 +11,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+		font-family: 'Roboto', sans-serif;
     }
 
     /*Define o formato do cabeçalho*/
@@ -43,7 +44,53 @@
     /*Menu do meio*/
     .menu {
         width: 100%;
-        margin: 106px 0;
+        margin: 104px 0;
         z-index: 1;
+		color: #000000;
     }
+
+	.mensagem {
+		width: 100%;
+		height: auto;
+		margin: 2px 0;
+		border-radius: 2px;
+		display: flex;
+		flex-direction: row;
+		white-space: nowrap;
+	}
+
+	.normal {
+		width: 100%;
+		padding: 15px 9px;
+		background-color: #ffffff;
+		display: inline;
+		word-wrap: break-word;
+	}
+	
+	.entrada {
+		width: 100%;
+		padding: 15px 9px;
+		background-color: #dcdcdc;
+		display: inline;
+		word-wrap: break-word;
+	}
+
+	.reservada {
+		width: 100%;
+		padding: 15px 9px;
+		background-color: #ffdede;
+		display: inline;
+		word-wrap: break-word;
+	}
+
+	.horario {
+		color: #aaaaaa;
+		display: inline;
+	}
+
+	.nome {
+		font-weight: bold;
+		display: inline;
+	}
+
 }
