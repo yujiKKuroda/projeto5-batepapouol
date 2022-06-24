@@ -6,7 +6,6 @@ let pessoa = {
 // Função que pede o nome do usuário e confere se ele já está na sala
 function iniciar() {
     pessoa.name = prompt("Digite o seu nome");
-    console.log(pessoa.name);
     const usuario = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', pessoa);
     usuario.then(entrarSala);
     usuario.catch(naoEntrar);
@@ -20,16 +19,24 @@ function naoEntrar(erro) {
     iniciar();
 }
 
+//Função que avisa caso um usuário com o mesmo nome já exista e pede outro nome
+function sair() {
+    alert("Sessão expirada! Por favor logue novamente!");
+    iniciar();
+}
+
 // Função que deixa o usuário entrar na sala
-function entrarSala(pessoa) {
+function entrarSala() {
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promise.then(botarMensagens);
 }
 
 function botarMensagens(msg) {
     let menu = document.querySelector(".menu");
+    console.log("Estou aqui!");
     menu.innerHTML = "";
     for (let i = 0; i < msg.length; i++) {
+        console.log(msg[i].type)
         switch (msg[i].type) {
             case "status":
                 menu.innerHTML += `
@@ -49,7 +56,7 @@ function botarMensagens(msg) {
                 `;
                 break;
             case "private_message":
-                if (pessoa.nome === msg[i].to) {
+                if (pessoa.name === msg[i].to) {
                     menu.innerHTML += `
                     <div class="mensagem">
                         <div class="reservada">
@@ -63,7 +70,16 @@ function botarMensagens(msg) {
                 break;
         }
     }
+    console.log("Terminei de entregar as mensagens");
+}
+
+function manterConectado() {
+    const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', pessoa);
+    console.log("Conectei!");
+    promise.then();
+    promise.catch(sair);
 }
 
 
 iniciar();
+const online = setInterval(manterConectado, 5000);
