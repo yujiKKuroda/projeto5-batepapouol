@@ -33,16 +33,14 @@ function entrarSala() {
 
 function botarMensagens(msg) {
     let menu = document.querySelector(".menu");
-    console.log("Estou aqui!");
     menu.innerHTML = "";
-    for (let i = 0; i < msg.length; i++) {
-        console.log(msg[i].type)
-        switch (msg[i].type) {
+    for (let i = 0; i < msg.data.length; i++) {
+        switch (msg.data[i].type) {
             case "status":
                 menu.innerHTML += `
                 <div class="mensagem">
                     <div class="entrada">
-                        <p><div class="horario">(${msg[i].time})</div> <div>${msg[i].from}</b> ${msg[i].text}</p>
+                        <p><div class="horario">(${msg.data[i].time})</div> <b>${msg.data[i].from}</b> ${msg.data[i].text}</p>
                     </div>
                 </div>
                 `;
@@ -51,16 +49,16 @@ function botarMensagens(msg) {
                 menu.innerHTML += `
                 <div class="mensagem">
                     <div class="normal">
-                        <p><div class="horario">(${msg[i].time})</div> <b>${msg[i].from}</b> para <b>${msg[i].to}</b>: ${msg[i].text}</p>
+                        <p><div class="horario">(${msg.data[i].time})</div> <b>${msg.data[i].from}</b> para <b>${msg.data[i].to}</b>: ${msg.data[i].text}</p>
                 </div>
                 `;
                 break;
             case "private_message":
-                if (pessoa.name === msg[i].to) {
+                if (pessoa.name === msg.data[i].to) {
                     menu.innerHTML += `
                     <div class="mensagem">
                         <div class="reservada">
-                            <p><div class="horario">(${msg[i].time})</div> <b>${msg[i].from}</b> reservadamente para <b>${msg[i].to}</b>: ${msg[i].text}</p>
+                            <p><div class="horario">(${msg.data[i].time})</div> <b>${msg.data[i].from}</b> reservadamente para <b>${msg.data[i].to}</b>: ${msg.data[i].text}</p>
                         </div>
                     </div>
                     `;
@@ -75,7 +73,6 @@ function botarMensagens(msg) {
 
 function manterConectado() {
     const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', pessoa);
-    console.log("Conectei!");
     promise.then();
     promise.catch(sair);
 }
