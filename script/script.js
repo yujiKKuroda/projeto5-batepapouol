@@ -1,12 +1,12 @@
 // Objeto que representa o usuário
 let pessoa = {
-    nome: ""
+    name: ""
 }
 
 // Função que pede o nome do usuário e confere se ele já está na sala
 function iniciar() {
-    pessoa.nome = prompt("Digite o seu nome");
-    console.log(pessoa.nome);
+    pessoa.name = prompt("Digite o seu nome");
+    console.log(pessoa.name);
     const usuario = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', pessoa);
     usuario.then(entrarSala);
     usuario.catch(naoEntrar);
@@ -35,10 +35,29 @@ function botarMensagens(msg) {
                 menu.innerHTML += `
                 <div class="mensagem">
                     <div class="entrada">
-                        <div class="horario">(${msg[i].time})</div> <b>${msg[i].from}</b> ${msg[i].text}
+                        <p><div class="horario">(${msg[i].time})</div> <div>${msg[i].from}</b> ${msg[i].text}</p>
                     </div>
                 </div>
                 `;
+                break;
+            case "message":
+                menu.innerHTML += `
+                <div class="mensagem">
+                    <div class="normal">
+                        <p><div class="horario">(${msg[i].time})</div> <b>${msg[i].from}</b> para <b>${msg[i].to}</b>: ${msg[i].text}</p>
+                </div>
+                `;
+                break;
+            case "private_message":
+                if (pessoa.nome === msg[i].to) {
+                    menu.innerHTML += `
+                    <div class="mensagem">
+                        <div class="reservada">
+                            <p><div class="horario">(${msg[i].time})</div> <b>${msg[i].from}</b> reservadamente para <b>${msg[i].to}</b>: ${msg[i].text}</p>
+                        </div>
+                    </div>
+                    `;
+                }                
                 break;
             default:
                 break;
