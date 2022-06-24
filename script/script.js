@@ -62,13 +62,12 @@ function botarMensagens(msg) {
                         </div>
                     </div>
                     `;
-                }                
+                }
                 break;
             default:
                 break;
         }
     }
-    console.log("Terminei de entregar as mensagens");
 }
 
 function manterConectado() {
@@ -77,6 +76,13 @@ function manterConectado() {
     promise.catch(sair);
 }
 
+function atualizarMensagens() {
+    const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
+    console.log("Continuo a atualizar!");
+    promise.then(botarMensagens);
+    promise.catch(sair);
+}
 
 iniciar();
 const online = setInterval(manterConectado, 5000);
+const atualizado = setInterval(atualizarMensagens, 3000);
