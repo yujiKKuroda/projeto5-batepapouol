@@ -30,7 +30,7 @@ function entrarSala() {
 //Função que avisa caso um usuário com o mesmo nome já exista e pede outro nome
 function sair() {
     alert("Sessão expirada! Por favor logue novamente!");
-    iniciar();
+    window.location.reload();
 }
 
 function botarMensagens(msg) {
@@ -72,6 +72,7 @@ function botarMensagens(msg) {
         }
     }
     const todasMensagens = document.querySelectorAll(".mensagem");
+    console.log(todasMensagens[todasMensagens.length - 1].innerHTML);
     if (ultimaMensagem !== todasMensagens[todasMensagens.length - 1].innerHTML) {
         ultimaMensagem = todasMensagens[todasMensagens.length - 1].innerHTML;
         todasMensagens[todasMensagens.length - 1].scrollIntoView();
@@ -81,7 +82,15 @@ function botarMensagens(msg) {
 function enviarMensagem() {
     let mensagem = document.getElementById("msg").value;
     if (mensagem !== "") {
-        console.log(`Eu escrevi: ${mensagem}`);
+        let envio = {
+            from: pessoa.name,
+            to: "Todos",
+            text: mensagem,
+            type: "message"
+        };
+        const promise = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', envio);
+        promise.then(botarMensagens);
+        promise.catch(sair);
     }
 }
 
