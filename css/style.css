@@ -95,6 +95,10 @@
 		box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
     }
 
+	.rodape form {
+		align-items: center;
+	}
+
 	.rodape input[type=text] {
 		position: absolute;
 		width: 85%;
@@ -112,11 +116,12 @@
 		color: #000000;
 	}
 
-	.rodape ion-icon {
+	.rodape form ion-icon {
 		position: absolute;
 		width: 26px;
 		height: 26px;
 		right: 18px;
+		bottom: 27px;
 	}
 
 }

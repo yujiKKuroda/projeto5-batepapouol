@@ -1,3 +1,5 @@
+let ultimaMensagem = "";
+
 // Objeto que representa o usuário
 let pessoa = {
     name: ""
@@ -19,54 +21,67 @@ function naoEntrar(erro) {
     iniciar();
 }
 
-//Função que avisa caso um usuário com o mesmo nome já exista e pede outro nome
-function sair() {
-    alert("Sessão expirada! Por favor logue novamente!");
-    iniciar();
-}
-
 // Função que deixa o usuário entrar na sala
 function entrarSala() {
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
     promise.then(botarMensagens);
 }
 
+//Função que avisa caso um usuário com o mesmo nome já exista e pede outro nome
+function sair() {
+    alert("Sessão expirada! Por favor logue novamente!");
+    iniciar();
+}
+
 function botarMensagens(msg) {
     let menu = document.querySelector(".menu");
     menu.innerHTML = "";
-    for (let i = 0; i < msg.data.length; i++) {
+    quantidadeMensagens = msg.data.length;
+    for (let i = 0; i < quantidadeMensagens; i++) {
         switch (msg.data[i].type) {
             case "status":
                 menu.innerHTML += `
-                <div class="mensagem">
-                    <div class="entrada">
-                        <p><div class="horario">(${msg.data[i].time})</div> <b>${msg.data[i].from}</b> ${msg.data[i].text}</p>
+                    <div class="mensagem">
+                        <div class="entrada">
+                            <p><div class="horario">(${msg.data[i].time})</div> <b>${msg.data[i].from}</b> ${msg.data[i].text}</p>
+                        </div>
                     </div>
-                </div>
-                `;
+                    `;
                 break;
             case "message":
                 menu.innerHTML += `
-                <div class="mensagem">
-                    <div class="normal">
-                        <p><div class="horario">(${msg.data[i].time})</div> <b>${msg.data[i].from}</b> para <b>${msg.data[i].to}</b>: ${msg.data[i].text}</p>
-                </div>
-                `;
+                    <div class="mensagem">
+                        <div class="normal">
+                            <p><div class="horario">(${msg.data[i].time})</div> <b>${msg.data[i].from}</b> para <b>${msg.data[i].to}</b>: ${msg.data[i].text}</p>
+                    </div>
+                    `;
                 break;
             case "private_message":
                 if (pessoa.name === msg.data[i].to) {
                     menu.innerHTML += `
-                    <div class="mensagem">
-                        <div class="reservada">
-                            <p><div class="horario">(${msg.data[i].time})</div> <b>${msg.data[i].from}</b> reservadamente para <b>${msg.data[i].to}</b>: ${msg.data[i].text}</p>
+                        <div class="mensagem">
+                            <div class="reservada">
+                                <p><div class="horario">(${msg.data[i].time})</div> <b>${msg.data[i].from}</b> reservadamente para <b>${msg.data[i].to}</b>: ${msg.data[i].text}</p>
+                            </div>
                         </div>
-                    </div>
-                    `;
+                        `;
                 }
                 break;
             default:
                 break;
         }
+    }
+    const todasMensagens = document.querySelectorAll(".mensagem");
+    if (ultimaMensagem !== todasMensagens[todasMensagens.length - 1].innerHTML) {
+        ultimaMensagem = todasMensagens[todasMensagens.length - 1].innerHTML;
+        todasMensagens[todasMensagens.length - 1].scrollIntoView();
+    }
+}
+
+function enviarMensagem() {
+    let mensagem = document.getElementById("msg").value;
+    if (mensagem !== "") {
+        console.log(`Eu escrevi: ${mensagem}`);
     }
 }
 
@@ -78,7 +93,6 @@ function manterConectado() {
 
 function atualizarMensagens() {
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
-    console.log("Continuo a atualizar!");
     promise.then(botarMensagens);
     promise.catch(sair);
 }
