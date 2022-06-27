@@ -6,6 +6,7 @@
 /*Todos os estilos serão feitos por aqui*/
 @media (max-width: 736px) {
 	
+	/*corpo da página*/
     body {
         background-color: #e5e5e5;
         display: flex;
@@ -25,7 +26,8 @@
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
     }
 
-	.titulo img {
+	/*Define o tamanho da logo*/
+	.logo {
 		position: absolute;
 		width: 73px;
         height: 53px;
@@ -33,6 +35,7 @@
 		left: 22px;
 	}
 
+	/*Define o tamanho do ícone do cabeçalho*/
 	.titulo ion-icon {
 		position: absolute;
 		width: 45px;
@@ -41,7 +44,7 @@
 		right: 21px;
 	}
 
-    /*------------------------------------------------------------------------------------------------*/
+    /*-------------------------------------------------------------------------------------------*/
     /*Menu do meio*/
     .menu {
         width: 100%;
@@ -50,6 +53,7 @@
 		color: #000000;
     }
 
+	/*Formata as mensagens*/
 	.mensagem {
 		width: 100%;
 		height: auto;
@@ -61,27 +65,29 @@
 		word-wrap: break-word;
 	}
 
+	/*Define as cores das mensagens e seus componentes*/
+	/*Mensagem normal*/
 	.normal {
 		padding: 15px 9px;
 		background-color: #ffffff;
 	}
-	
+	/*Entrada/Saída*/
 	.entrada {
 		padding: 15px 9px;
 		background-color: #dcdcdc;
 	}
-
+	/*Mensagem reservada*/
 	.reservada {
 		padding: 15px 9px;
 		background-color: #ffdede;
 	}
-
+	/*Horário da mensagem*/
 	.horario {
 		color: #aaaaaa;
 		display: inline;
 	}
 
-    /*------------------------------------------------------------------------------------------------*/
+    /*-------------------------------------------------------------------------------------------*/
     /*Menu para enviar mensagens*/
     .rodape {
         position: fixed;
@@ -95,10 +101,10 @@
 		box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
     }
 
+	/*Form para inserir a mensagem*/
 	.rodape form {
 		align-items: center;
 	}
-
 	.rodape input[type=text] {
 		position: absolute;
 		width: 85%;
@@ -111,11 +117,13 @@
 		box-sizing: border-box;
 	}
 
+	/*Texto dentro do form*/
 	::placeholder {		
 		font-style: italic;
 		color: #000000;
 	}
 
+	/*Ícone usado para enviar a mensagem*/
 	.rodape form ion-icon {
 		position: absolute;
 		width: 26px;

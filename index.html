@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,19 +12,25 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <!--Fonte Roboto-->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
+    <!--Cabeçalho com a logo e o menu de integrantes-->
     <div class="titulo">
-        <img src="./img/logo 1.png" />
+        <img class="logo" src="./img/logo 1.png" />
         <ion-icon name="people"></ion-icon>
     </div>
+    <!--Menu onde irão todas as mensagens-->
     <div class="menu">
     </div>
+    <!--Rodapé onde se pode escrever e mandar a mensagem-->
     <div class="rodape">
         <form>
-            <input type="text" id="msg" name="msg" placeholder="Escreva aqui..."/>
-    	    <ion-icon name="paper-plane-outline" onclick="enviarMensagem()"></ion-icon>
+            <input type="text" id="msg" name="msg" placeholder="Escreva aqui..." />
+            <ion-icon name="paper-plane-outline" id="button" onclick="enviarMensagem()"></ion-icon>
         </form>
     </div>
     <!--Biblioteca Axios-->
@@ -34,4 +41,5 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>
